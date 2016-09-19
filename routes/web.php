@@ -11,14 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Website
+Route::get('/','SiteController@index');
 
 Route::get('/login', 'UsuarioController@login');
 Route::post('/autentica', 'UsuarioController@autentica');
 Route::get('/logout', 'UsuarioController@logout');
-
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     
     Route::get('/', 'DashboardController@index');
@@ -36,17 +34,19 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 	//Produtos
 	Route::group(['prefix' => 'produto'], function () {
 		Route::get('/', 'ProdutoController@index');
-		Route::get('/store', 'ProdutoController@index');
-		Route::get('/update', 'ProdutoController@index');
-		Route::get('/delete', 'ProdutoController@index');
+		Route::get('/edit/{id}', 'ProdutoController@edit');
+		Route::post('/store', 'ProdutoController@store');
+		Route::post('/update/{id}', 'ProdutoController@update');
+		Route::get('/delete/{id}', 'ProdutoController@destroy');
 	});
 
 	//Categoria
-	Route::group(['prefix' => 'produto'], function () {
-		Route::get('/', 'ProdutoController@index');
-		Route::get('/store', 'ProdutoController@index');
-		Route::get('/update', 'ProdutoController@index');
-		Route::get('/delete', 'ProdutoController@index');
+	Route::group(['prefix' => 'categoria'], function () {
+		Route::get('/', 'CategoriaController@index');
+		Route::get('/edit/{id}', 'CategoriaController@edit');
+		Route::post('/store', 'CategoriaController@store');
+		Route::post('/update/{id}', 'CategoriaController@update');
+		Route::get('/delete/{id}', 'CategoriaController@destroy');
 	});
 
 	//Slideshow

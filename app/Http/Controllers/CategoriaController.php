@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Categoria;
+use App\Categoria, Validator;
 
 class CategoriaController extends Controller
 {
@@ -22,20 +22,13 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-            
+        $dados = [
+            'all' => $this->repository->paginate(15)
+        ];
+        return view('dashboard.categoria.index', $dados);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
+    /*
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -43,19 +36,21 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),
+        [
+            'nome' => 'required|unique:categoria|min:3',
+        ], $this->messages());
+        
+        $all = $request->all();
+        $all['busca'] = str_slug($all['nome']);
+        
+        if(!$validator->fails()){
+            $this->repository->create($all);
+            return redirect()->back()->with('status_ok', 'Categoria registrada com sucesso.');
+        }
+        return redirect()->back()->withErrors($validator)->withInput($request->all());
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -64,8 +59,13 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $dados = [
+            'categoria' => $this->repository->find($id),
+            'all' => $this->repository->paginate(15),
+            'edit' => true,
+        ];
+        return view('dashboard.categoria.index', $dados);
     }
 
     /**
@@ -77,7 +77,20 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'nome' => 'required|unique:categoria,id,'.$id,
+        ]);
+
+        $all = $request->all();
+        $categoria = $this->repository->find($id);
+        $categoria->nome = $all['nome'];
+        $categoria->busca = str_slug($all['nome']);
+
+        if(!$validator->fails()){
+            $categoria->save();
+            return redirect('dashboard/categoria')->with('status_ok', 'Categoria atualizada com sucesso.');
+        }
+        return redirect()->back()->withErrors($validator)->withInput($request->all());
     }
 
     /**
@@ -88,6 +101,18 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoria = $this->repository->find($id);
+        $categoria->delete();
+        return redirect()->back()->with('status_ok', 'Categoria removida com sucesso.');
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'O campo :attribute não pode ser vazio',
+            'unique' => 'Categoria já registrada',
+            'min:3' => 'Nome da categoria deve possuir no mínimo 3 catacteres.'
+        ];
     }
 }
+

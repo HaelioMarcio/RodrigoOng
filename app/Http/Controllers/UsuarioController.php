@@ -147,7 +147,11 @@ class UsuarioController extends Controller
 	}
 
 	public function login(){
-		return view('dashboard.usuario.login');
+        if(!Auth::check()){
+            return view('dashboard.usuario.login');    
+        }
+        return redirect('dashboard');
+		
 	}
 
 	public function autentica(Request $request){
@@ -162,16 +166,20 @@ class UsuarioController extends Controller
 		
 		$email = $all['email'];
 		$password = $all['password'];
+        
+        $data = ['email' => $email, 'password' => $password];
+        
+        if(!$validator->fails()){
 
-		if(!$validator->fails()){
-					if(Auth::attempt(['email' => $email, 'password' => $password])){
-						$user = $this->repository->where('email', '=', $all['email'])->first();
-						Auth::login($user);
-            			return redirect('/');	
-					}
+			if(Auth::attempt($data)){
+				//$user = $this->repository->where('email', '=', $all['email'])->first();
+				//Auth::login($user);
+            	return redirect('/dashboard');	
+			}
         	
 		}
-		return redirect('/login')->withErrors($validator);
+		return redirect('/login')->withErrors($validator)->with('status_error', 'Login e senha incorreto.');
+
 	}
 
 	public function logout(){

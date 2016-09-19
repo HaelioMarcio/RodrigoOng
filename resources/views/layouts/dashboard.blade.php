@@ -60,16 +60,16 @@
                   </li>
                   <li><a><i class="fa fa-home"></i> Catálogo <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{url('alunos/novo')}}">Produtos</a></li>
-                      <li><a href="{{url('alunos')}}">Categoria</a></li>
+                      <li><a href="{{url('dashboard/produto')}}">Produtos</a></li>
+                      <li><a href="{{url('dashboard/categoria')}}">Categoria</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Site <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{url('newsletter')}}">Galeria</a></li>
-                      <li><a href="{{url('newsletter')}}">Vídeos</a></li>
-                      <li><a href="{{url('')}}">Slideshow</a></li>
-                      <li><a href="{{url('')}}">Parâmetros / Posições</a></li>
+                      <li><a href="{{url('dashboard/galeria')}}">Galeria</a></li>
+                      <li><a href="{{url('dashboard/video')}}">Vídeos</a></li>
+                      <li><a href="{{url('dashboard/slideshow')}}">Slideshow</a></li>
+                      <li><a href="{{url('dashboard/posicao')}}">Parâmetros / Posições</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Relatórios <span class="fa fa-chevron-down"></span></a>

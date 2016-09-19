@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Produto, Validator;
 
 class ProdutoController extends Controller
 {
+    protected $repository;
+
+    public function __construct(Produto $produto)
+    {
+        $this->repository = $produto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,10 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
+        $dados = [
+            'all' => $this->repository->paginate(15),
+        ];
+        return view('dashboard.produto.index', $dados);
     }
 
     /**
