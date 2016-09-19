@@ -16,6 +16,7 @@ class CreateProdutoTable extends Migration
         Schema::create('produto', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->string('busca');
             $table->text('descricao')->nullable();
             $table->boolean('status');
             $table->integer('categoria_id')->unsigned();
@@ -35,3 +36,4 @@ class CreateProdutoTable extends Migration
         Schema::drop('produto');
     }
 }
+

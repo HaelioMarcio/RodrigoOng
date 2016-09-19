@@ -16,6 +16,7 @@
 				<input type="submit" value="Salvar" class="btn btn-success">
 			</div>
 		</form>
+		
 		@endif
 		@if(isset($edit))
 			<form class="form-inline" action="{{url('dashboard/categoria/update')}}/{{$categoria->id}}" method="post">
@@ -55,4 +56,5 @@
 		</tr>
 		@endforeach
 	</table>
+	{{$all->render()}}
 @endsection

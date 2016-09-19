@@ -81,8 +81,8 @@
                   @if(Auth::user()->type == "Administrador")
                   <li><a><i class="fa fa-group"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{url('usuario')}}">Lista</a></li>
-                      <li><a href="{{url('usuario/register')}}">Novo Usuário</a></li>
+                      <li><a href="{{url('dashboard/usuario')}}">Lista</a></li>
+                      <li><a href="{{url('dashboard/usuario/novo')}}">Novo Usuário</a></li>
                     </ul>
                   </li>
                   @endif
@@ -114,7 +114,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  		<li><a href="{{url('usuario')}}">Usuários</a></li>
+                  		<li><a href="{{url('dashboard/usuario')}}">Usuários</a></li>
                     <li><a href="{{url('logout')}}"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
                   </ul>
                 </li>

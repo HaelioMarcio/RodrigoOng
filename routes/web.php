@@ -34,6 +34,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 	//Produtos
 	Route::group(['prefix' => 'produto'], function () {
 		Route::get('/', 'ProdutoController@index');
+		Route::get('/novo', 'ProdutoController@create');
 		Route::get('/edit/{id}', 'ProdutoController@edit');
 		Route::post('/store', 'ProdutoController@store');
 		Route::post('/update/{id}', 'ProdutoController@update');

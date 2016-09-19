@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
+use App\User, App\Categoria;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +20,14 @@ class DatabaseSeeder extends Seeder
     		'password' => Hash::make('123123'),
     		'type' => 'Administrador'
     	]);
+
+        for($i = 0; $i <= 30; $i++){
+            Categoria::create([
+                'nome' => 'Camisa'.$i,
+                'busca' => 'camisa'.$i,
+                'descricao' => 'Caminas gola polo.'
+            ]);
+        }
 
     }
 }

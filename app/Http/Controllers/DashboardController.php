@@ -12,28 +12,41 @@ App\Galeria,
 App\Newsletter,
 App\Parametro,
 App\Categoria,
-App\Produto;
+App\Produto,
+App\Slideshow;
 
 class DashboardController extends Controller
 {
-    protected $user, $video, $galeria, $newsletter, $parametro, $categoria, $produto;
+    protected $user, $video, $slideshow, $galeria, $newsletter, $parametro, $categoria, $produto;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(User $user, Video $video, Galeria $galeria, Newsletter $newsletter, Parametro $parametro, Categoria $categoria, Produto $produto)
+    public function __construct(User $user, Video $video, Galeria $galeria, Newsletter $newsletter, Parametro $parametro, Categoria $categoria, Produto $produto, Slideshow $slideshow)
     {
         $this->user = $user;
-        $this->video = $user;
-        $this->galeria = $user;
-        $this->newsletter = $user;
-        $this->parametro = $user;
+        $this->video = $video;
+        $this->galeria = $galeria;
+        $this->newsletter = $newsletter;
+        $this->parametro = $parametro;
+        $this->produto = $produto;
+        $this->categoria = $categoria;
+        $this->slideshow = $slideshow;
     }
 
     public function index()
     {   
-        return view('dashboard.index');
+        $dados = [
+            'produto' => $this->produto->where('nome', 0)->count(),
+            'categoria' => $this->categoria->where('nome', 0)->count(),
+            'galeria' => $this->galeria->where('nome', 0)->count(),
+            'slideshow' => $this->slideshow->where('nome', 0)->count(),
+            'video' => $this->video->where('nome', 0)->count(),
+            'usuario' => $this->user->where('name', 0)->count(),
+
+        ];
+        return view('dashboard.index', $dados);
     }
     /**
      * Show the form for creating a new resource.
