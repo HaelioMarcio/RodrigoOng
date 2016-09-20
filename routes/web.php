@@ -51,11 +51,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 	});
 
 	//Slideshow
-	Route::group(['prefix' => 'produto'], function () {
-		Route::get('/', 'ProdutoController@index');
-		Route::get('/store', 'ProdutoController@index');
-		Route::get('/update', 'ProdutoController@index');
-		Route::get('/delete', 'ProdutoController@index');
+	Route::group(['prefix' => 'slideshow'], function () {
+		Route::get('/', 'SlideshowController@index');
+		Route::get('/edit/{id}', 'SlideshowController@edit');
+		Route::post('/store', 'SlideshowController@store');
+		Route::post('/update/{id}', 'SlideshowController@update');
+		Route::get('/delete/{id}', 'SlideshowController@destroy');
 	});
 
 	//Galeria

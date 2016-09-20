@@ -35,7 +35,7 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<input type="file" name="image" class="btn btn-success" value="Salvar">
+			<input type="file" name="image" class="btn btn-success" value="Salvar" required>
 		</div>
 		<div class="form-group">
 			<input type="submit" class="btn btn-success" value="Salvar">
