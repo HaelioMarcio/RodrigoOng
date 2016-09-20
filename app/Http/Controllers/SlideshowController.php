@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Slideshow, Validator;
+use App\Slideshow, Validator, Storage;
 
 class SlideshowController extends Controller
 {
@@ -17,20 +16,21 @@ class SlideshowController extends Controller
 
     public function index(){
     	$dados = [
-    		'all' => $this->repository->paginate(15)
+            'images' => Storage::disk('public_slideshow')->allFiles(),
     	];
     	return view('dashboard.slideshow.index', $dados);
     }
 
     public function store(Request $request){
-    	$inputs = $request->all();
-        
+        $path = $request->file('image')->storeAs('','slide4.jpeg', 'public_slideshow');
+        return redirect()->back()->with('status_ok', 'Imagem enviada com sucesso.');
+        /*$inputs = $request->all();
         //Validation
         $validator = Validator::make($inputs,
             [   
                 'nome' => 'required|min:3',
             ]);
-
+        $inputs['status'] = 1;
         if(!$validator->fails()){
 
             $produto = $this->repository->create($inputs);
@@ -48,6 +48,11 @@ class SlideshowController extends Controller
             //}
         } else{
             return redirect()->back()->withErrors($validator->errors());
-        }
+        } */
+    }
+
+    public function destroy($name){
+        Storage::disk('public_slideshow')->delete($name);
+        return redirect()->back()->with('status_ok', 'Imagem removida com sucesso.');
     }
 }

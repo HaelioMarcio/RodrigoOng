@@ -53,6 +53,16 @@ return [
             'root' => storage_path('app/public'),
             'visibility' => 'public',
         ],
+        'public_slideshow' => [
+            'driver' => 'local',
+            'root' => public_path('images/slideshow/'),
+            'visibility' => 'public',
+        ],
+        'galeria' => [
+            'driver' => 'local',
+            'root' => public_path('images/galeria/'),
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

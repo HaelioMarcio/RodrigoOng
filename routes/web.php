@@ -53,18 +53,21 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 	//Slideshow
 	Route::group(['prefix' => 'slideshow'], function () {
 		Route::get('/', 'SlideshowController@index');
-		Route::get('/edit/{id}', 'SlideshowController@edit');
 		Route::post('/store', 'SlideshowController@store');
-		Route::post('/update/{id}', 'SlideshowController@update');
-		Route::get('/delete/{id}', 'SlideshowController@destroy');
+		Route::get('/delete/{name}', 'SlideshowController@destroy');
 	});
 
 	//Galeria
-	Route::group(['prefix' => 'produto'], function () {
-		Route::get('/', 'ProdutoController@index');
-		Route::get('/store', 'ProdutoController@index');
-		Route::get('/update', 'ProdutoController@index');
-		Route::get('/delete', 'ProdutoController@index');
+	Route::group(['prefix' => 'galeria'], function () {
+		Route::post('/upload', 'GaleriaController@uploadImages');
+		Route::get('/delete/image', 'GaleriaController@destroyImage');
+		Route::post('/diretorio/store', 'GaleriaController@storeDiretorio');
+		Route::post('/subdiretorio/store', 'GaleriaController@storeSubdiretorio');
+		
+		Route::get('/{name?}/{evento?}', 'GaleriaController@index');
+		Route::post('/store', 'GaleriaController@store');
+		Route::get('/delete/{name}', 'GaleriaController@destroy');
+
 	});
 
 	//Vídeos
