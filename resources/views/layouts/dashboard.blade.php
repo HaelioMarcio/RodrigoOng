@@ -21,6 +21,7 @@
     <link href="{{url('')}}/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- Custom Theme Style -->
     <link href="{{url('')}}/build/css/custom.min.css" rel="stylesheet">
+    @yield('scripts')
   </head>
 
   <body class="nav-md">
@@ -58,7 +59,7 @@
                       <li><a href="{{url('dashboard')}}">Dashboard</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-home"></i> Catálogo <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-th-list"></i> Catálogo de Produtos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{url('dashboard/produto')}}">Produtos</a></li>
                       <li><a href="{{url('dashboard/categoria')}}">Categoria</a></li>
@@ -69,7 +70,7 @@
                       <li><a href="{{url('dashboard/galeria')}}">Galeria</a></li>
                       <li><a href="{{url('dashboard/video')}}">Vídeos</a></li>
                       <li><a href="{{url('dashboard/slideshow')}}">Slideshow</a></li>
-                      <li><a href="{{url('dashboard/posicao')}}">Parâmetros / Posições</a></li>
+                      <li><a href="{{url('dashboard/parametro')}}">Parâmetros / Posições</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Relatórios <span class="fa fa-chevron-down"></span></a>
@@ -106,6 +107,7 @@
             <nav>
               <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+
               </div>
               <ul class="nav navbar-nav navbar-right">
                 <li class="">

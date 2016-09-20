@@ -71,19 +71,31 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 	});
 
 	//Vídeos
-	Route::group(['prefix' => 'produto'], function () {
-		Route::get('/', 'ProdutoController@index');
-		Route::get('/store', 'ProdutoController@index');
-		Route::get('/update', 'ProdutoController@index');
-		Route::get('/delete', 'ProdutoController@index');
+	Route::group(['prefix' => 'video'], function () {
+		Route::get('/', 'VideoController@index');
+		Route::get('/novo', 'VideoController@create');
+		Route::get('/edit/{id}', 'VideoController@edit');
+		Route::post('/store', 'VideoController@store');
+		Route::post('/update/{id}', 'VideoController@update');
+		Route::get('/delete/{id}', 'VideoController@destroy');
 	});
 
 	//Newsletter
 	Route::group(['prefix' => 'produto'], function () {
 		Route::get('/', 'ProdutoController@index');
-		Route::get('/store', 'ProdutoController@index');
-		Route::get('/update', 'ProdutoController@index');
-		Route::get('/delete', 'ProdutoController@index');
+		Route::get('/edit/{id}', 'ProdutoController@edit');
+		Route::get('/store', 'ProdutoController@store');
+		Route::get('/update/{id}', 'ProdutoController@update');
+		Route::get('/delete/{id}', 'ProdutoController@destroy');
 	});
 
+	//Parametro
+	Route::group(['prefix' => 'parametro'], function () {
+		Route::get('/', 'ParametroController@index');
+		Route::get('/novo', 'ParametroController@create');
+		Route::post('/store', 'ParametroController@store');
+		Route::get('/edit/{id}', 'ParametroController@edit');
+		Route::post('/update/{id}', 'ParametroController@update');
+		Route::get('/delete/{id}', 'ParametroController@destroy');
+	});
 });

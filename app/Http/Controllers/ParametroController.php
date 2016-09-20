@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Parametro, Validator;
 
 class ParametroController extends Controller
 {
+    protected $repository;
+
+    public function __construct(Parametro $parametro){
+        $this->repository = $parametro;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,11 @@ class ParametroController extends Controller
      */
     public function index()
     {
-        //
+        $dados = [
+            'all' => $this->repository->paginate(15),
+        ];
+
+        return view('dashboard.parametro.index', $dados);
     }
 
     /**
@@ -25,7 +35,7 @@ class ParametroController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.parametro.create');
     }
 
     /**
@@ -36,7 +46,22 @@ class ParametroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [   
+                'nome' => 'required',
+                'posicao' => 'required',
+            ],
+            $this->messages());
+
+        $all = $request->all();
+        $all['status'] = true;
+        
+        if(!$validator->fails()){
+            $this->repository->create($all);
+            return redirect('dashboard/parametro')->with('status_ok', 'Parametro criado com sucesso.');
+        }
+
+        return redirect()->back()->withErros($validator);
     }
 
     /**
@@ -58,7 +83,8 @@ class ParametroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $parametro = $this->repository->find($id);
+        return view('dashboard.parametro.edit', ['parametro' => $parametro]);
     }
 
     /**
@@ -70,7 +96,21 @@ class ParametroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [   
+                'nome' => 'required',
+                'posicao' => 'required',
+            ],
+            $this->messages());
+
+        $parametro = $this->repository->find($id);
+        
+        if(!$validator->fails()){
+            $parametro->update($request->all());
+            return redirect('dashboard/parametro')->with('status_ok', 'Parametro atualizado com sucesso.');
+        }
+
+        return redirect()->back()->withErros($validator);
     }
 
     /**
@@ -81,6 +121,15 @@ class ParametroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $parametro = $this->repository->find($id);
+        $parametro->delete();
+        return redirect()->back()->with('status_ok', 'Parametro removido com sucesso');
+
+    }
+
+    public function messages(){
+        return [
+            'required' => 'O campo :attibute não pode ser vazio.'
+        ];
     }
 }

@@ -5,11 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Video;
 
 class SiteController extends Controller
-{
+{  
+    protected $video;
+    public function __construct(Video $video){
+        $this->video = $video;
+    }
     public function index(){
-    	return view('site.index');
+        $dados = [
+            'videos' => $this->video->all(),
+        ];
+    	return view('site.index', $dados);
     }
     public function quemsomos(){
     	return view('site.quemsomos');

@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Video, Validator;
 
 class VideoController extends Controller
 {
+    protected $repository;
+    public function __construct(Video $video){
+        $this->repository = $video;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,11 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+        $dados = [
+            'all' => $this->repository->paginate(6),
+        ];
+
+        return view('dashboard.video.index', $dados);
     }
 
     /**
@@ -25,7 +34,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.video.create');
     }
 
     /**
@@ -36,7 +45,21 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+                'nome' => 'required|min:4',
+                'link' => 'required'
+            ],[
+                'required' => 'O campo :attribute não pode ser vazio.',
+                'min:4' => 'O campo terá que possui no mínimo 4 caracteres.'
+            ]);
+        $all = $request->all();
+        $all['status'] = true;
+        if(!$validator->fails()){
+            $this->repository->create($all);
+            return redirect('dashboard/video')->with('status_ok', 'Vídeo cadastrado com sucesso.');
+        }
+
+        return redirect()->back()->withErrors($validator)->withInput($request->all());
     }
 
     /**
@@ -58,7 +81,8 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video = $this->repository->find($id);
+        return view('dashboard.video.edit', ['video' => $video]);
     }
 
     /**
@@ -70,7 +94,20 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),[
+                'nome' => 'required|min:4',
+                'link' => 'required'
+            ],[
+                'required' => 'O campo :attribute não pode ser vazio.',
+                'min:4' => 'O campo terá que possui no mínimo 4 caracteres.'
+            ]);
+        $video = $this->repository->find($id);
+        if(!$validator->fails()){
+            $video->update($request->all());
+            return redirect('dashboard/video')->with('status_ok', 'Vídeo atualizado com sucesso.');
+        }
+
+        return redirect()->back()->withErrors($validator)->withInput($request->all());
     }
 
     /**
@@ -81,6 +118,8 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $video = $this->repository->find($id);
+        $video->delete();
+        return redirect()->back()->with('status_ok', 'Vídeo removido com sucesso.');
     }
 }

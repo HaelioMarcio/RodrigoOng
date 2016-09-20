@@ -1,5 +1,4 @@
 @extends('layouts.site')
-
 @section('content')
   <section class="theme-color pad-top-bottom text-center">
     <div class="container">
@@ -155,8 +154,10 @@
             <h1 style="margin-top: 50px">VÍDEOS</h1>
             <span class="line"> <span></span> </span> 
           </header>
+          @foreach($videos as $v)
+          <iframe width="560" height="315" src="{{$v->link}}" frameborder="0" allowfullscreen></iframe>
+          @endforeach
           <iframe width="560" height="315" src="https://www.youtube.com/embed/QILIXN3fP6o" frameborder="0" allowfullscreen></iframe> 
-          
           <iframe width="560" height="315" src="https://www.youtube.com/embed/tj8kFnJOrlQ" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
