@@ -6,6 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produto extends Model
 {
+
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    protected $revisionEnabled = true;
+    protected $revisionCleanup = true; //Remove old revisions (works only when used with $historyLimit)
+    protected $historyLimit = 500;    
+    protected $revisionCreationsEnabled = true;
+
+    protected $keepRevisionOf = array(
+        'nome', 'descricao'
+    );  
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
     protected $table = 'produto';
     protected $fillable = ['nome', 'descricao', 'status', 'busca', 'categoria_id'];
 

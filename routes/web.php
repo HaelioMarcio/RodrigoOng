@@ -26,7 +26,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 		Route::get('/', 'UsuarioController@index');
 		Route::get('/novo', 'UsuarioController@create');
 		Route::get('/edit/{id}', 'UsuarioController@edit');
-		Route::post('/store/{id}', 'UsuarioController@update');
+		Route::post('/store', 'UsuarioController@store');
 		Route::get('/update', 'UsuarioController@update');
 		Route::get('/delete', 'UsuarioController@destroy');
 	});
