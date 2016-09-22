@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Produto extends Model
 {
 
-    use \Venturecraft\Revisionable\RevisionableTrait;
+    use \Venturecraft\Revisionable\RevisionableTrait;    
+
+    protected $guarded = [];
 
     protected $revisionEnabled = true;
     protected $revisionCleanup = true; //Remove old revisions (works only when used with $historyLimit)
@@ -37,4 +40,10 @@ class Produto extends Model
     		return "Despubliicado";
     	}
     }
+
+    public function userName($id){
+        $user = User::find($id);
+        return $user['name'];
+    }
+
 }

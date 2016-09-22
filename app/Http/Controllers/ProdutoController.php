@@ -15,6 +15,14 @@ class ProdutoController extends Controller
         $this->repository = $produto;
         $this->categoria = $categoria;
     }
+
+    public function history(){
+        $dados = [
+            'all' => $this->repository->all(),
+        ];
+
+        return view('dashboard.produto.history', $dados); 
+    }
     /**
      * Display a listing of the resource.
      *
