@@ -17,6 +17,7 @@ class ProdutoController extends Controller
     }
 
     public function history(){
+
         $dados = [
             'title' => 'Produtos',
             'all' => $this->repository->all(),
@@ -32,6 +33,7 @@ class ProdutoController extends Controller
     public function index()
     {
         $dados = [
+            'link' => 'produto',
             'all' => $this->repository->paginate(15),
         ];
         return view('dashboard.produto.index', $dados);

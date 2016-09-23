@@ -3,7 +3,7 @@
 	
 	<h3>Vídeos</h3>
 	<a href="{{url('dashboard/video/novo')}}" class="btn btn-success">Novo Vídeo</a>
-	<a class="btn btn-info" href="{{url('dashboard/video/historico')}}">Histórico</a>
+	@include('dashboard.linkhistory')
 	@include('dashboard.validator')
 	<hr>
 	<div class="row">

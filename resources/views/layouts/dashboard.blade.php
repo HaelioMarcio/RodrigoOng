@@ -116,7 +116,9 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    @if(Auth::user()->type == "Administrador")
                   		<li><a href="{{url('dashboard/usuario')}}">Usuários</a></li>
+                    @endif()
                     <li><a href="{{url('logout')}}"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
                   </ul>
                 </li>

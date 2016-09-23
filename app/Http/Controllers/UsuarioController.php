@@ -23,8 +23,11 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $all = $this->repository->all();
-        return view('dashboard.usuario.index', ['all' => $all]);
+        $dados = [
+            'link' => 'produto',
+            'all' => $this->repository->all(),
+        ];
+        return view('dashboard.usuario.index', $dados);
     }
 
     /**
@@ -189,6 +192,7 @@ class UsuarioController extends Controller
 
     public function history(){
         $dados = [
+            'link' => 'categoria',
             'title' => 'Usuários',
             'all' => $this->repository->all(),
         ];

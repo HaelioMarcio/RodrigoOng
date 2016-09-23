@@ -23,6 +23,7 @@ class CategoriaController extends Controller
     public function index()
     {
         $dados = [
+        'link' => 'categoria',
             'all' => $this->repository->paginate(15)
         ];
         return view('dashboard.categoria.index', $dados);
@@ -117,6 +118,7 @@ class CategoriaController extends Controller
 
     public function history(){
         $dados = [
+            'link' => 'categoria',
             'title' => 'Categorias',
             'all' => $this->repository->all(),
         ];

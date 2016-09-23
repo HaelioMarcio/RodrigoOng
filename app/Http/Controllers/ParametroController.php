@@ -22,6 +22,7 @@ class ParametroController extends Controller
     public function index()
     {
         $dados = [
+        'link' => 'parametro',
             'all' => $this->repository->paginate(15),
         ];
 
@@ -135,6 +136,7 @@ class ParametroController extends Controller
 
     public function history(){
         $dados = [
+            'link' => 'categoria',
             'title' => 'Parametros',
             'all' => $this->repository->all(),
         ];

@@ -16,7 +16,7 @@
 				<input type="submit" value="Salvar" class="btn btn-success">
 			</div>
 			<div class="form-group">
-				<a class="btn btn-info" href="{{url('dashboard/categoria/historico')}}">Histórico</a>
+				@include('dashboard.linkhistory')
 			</div>
 		</form>
 		

@@ -21,7 +21,9 @@ class VideoController extends Controller
     public function index()
     {
         $dados = [
+            'link' => 'video',
             'all' => $this->repository->paginate(6),
+
         ];
 
         return view('dashboard.video.index', $dados);
@@ -125,6 +127,7 @@ class VideoController extends Controller
 
     public function history(){
         $dados = [
+            'link' => 'categoria',
             'title' => 'Vídeos',
             'all' => $this->repository->all(),
         ];
