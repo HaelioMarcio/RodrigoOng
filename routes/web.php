@@ -23,6 +23,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
     //Usuario
 	Route::group(['prefix' => 'usuario'], function () {
+		Route::get('/historico', 'UsuarioController@history');
 		Route::get('/', 'UsuarioController@index');
 		Route::get('/novo', 'UsuarioController@create');
 		Route::get('/edit/{id}', 'UsuarioController@edit');
@@ -44,6 +45,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
 	//Categoria
 	Route::group(['prefix' => 'categoria'], function () {
+		Route::get('/historico', 'CategoriaController@history');
 		Route::get('/', 'CategoriaController@index');
 		Route::get('/edit/{id}', 'CategoriaController@edit');
 		Route::post('/store', 'CategoriaController@store');
@@ -73,6 +75,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
 	//Vídeos
 	Route::group(['prefix' => 'video'], function () {
+		Route::get('/historico', 'VideoController@history');
 		Route::get('/', 'VideoController@index');
 		Route::get('/novo', 'VideoController@create');
 		Route::get('/edit/{id}', 'VideoController@edit');
@@ -82,7 +85,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 	});
 
 	//Newsletter
-	Route::group(['prefix' => 'produto'], function () {
+	Route::group(['prefix' => 'newsletter'], function () {
 		Route::get('/', 'ProdutoController@index');
 		Route::get('/edit/{id}', 'ProdutoController@edit');
 		Route::get('/store', 'ProdutoController@store');
@@ -92,6 +95,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
 	//Parametro
 	Route::group(['prefix' => 'parametro'], function () {
+		Route::get('/historico', 'ParametroController@history');
 		Route::get('/', 'ParametroController@index');
 		Route::get('/novo', 'ParametroController@create');
 		Route::post('/store', 'ParametroController@store');

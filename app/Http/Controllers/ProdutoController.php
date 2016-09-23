@@ -18,10 +18,11 @@ class ProdutoController extends Controller
 
     public function history(){
         $dados = [
+            'title' => 'Produtos',
             'all' => $this->repository->all(),
         ];
 
-        return view('dashboard.produto.history', $dados); 
+        return view('dashboard.history', $dados); 
     }
     /**
      * Display a listing of the resource.

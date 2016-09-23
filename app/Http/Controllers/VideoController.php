@@ -122,4 +122,13 @@ class VideoController extends Controller
         $video->delete();
         return redirect()->back()->with('status_ok', 'Vídeo removido com sucesso.');
     }
+
+    public function history(){
+        $dados = [
+            'title' => 'Vídeos',
+            'all' => $this->repository->all(),
+        ];
+
+        return view('dashboard.history', $dados); 
+    }
 }

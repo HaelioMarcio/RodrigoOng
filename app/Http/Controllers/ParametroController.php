@@ -132,4 +132,13 @@ class ParametroController extends Controller
             'required' => 'O campo :attibute não pode ser vazio.'
         ];
     }
+
+    public function history(){
+        $dados = [
+            'title' => 'Parametros',
+            'all' => $this->repository->all(),
+        ];
+
+        return view('dashboard.history', $dados); 
+    }
 }

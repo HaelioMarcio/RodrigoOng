@@ -2,6 +2,7 @@
 @section('content')
 	<h3>Lista de Produtos</h3>
 	<a class="btn btn-success" href="{{url('dashboard/produto/novo')}}">Novo Produto</a>
+	<a class="btn btn-info" href="{{url('dashboard/produto/historico')}}">Histórico</a>
 	@include('dashboard.validator')
 	<table class="table table-hover">
 		<tr>

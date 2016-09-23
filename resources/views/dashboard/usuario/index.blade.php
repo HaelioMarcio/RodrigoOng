@@ -6,6 +6,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<a class="btn btn-success" href="{{url('dashboard/usuario/novo')}}">Novo Usuário</a>
+			<a class="btn btn-info" href="{{url('dashboard/usuario/historico')}}">Histórico</a>
 		</div>
 		<div class="col-md-2 col-md-offset-4">
 			

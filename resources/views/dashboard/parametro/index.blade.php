@@ -2,6 +2,7 @@
 @section('content')
 	<h3>Lista de Parametros</h3>
 	<a class="btn btn-success" href="{{url('dashboard/parametro/novo')}}">Novo Parametro</a>
+	<a class="btn btn-info" href="{{url('dashboard/parametro/historico')}}">Histórico</a>
 	@include('dashboard.validator')
 	<table class="table table-hover">
 		<tr>

@@ -114,5 +114,14 @@ class CategoriaController extends Controller
             'min:3' => 'Nome da categoria deve possuir no mínimo 3 catacteres.'
         ];
     }
+
+    public function history(){
+        $dados = [
+            'title' => 'Categorias',
+            'all' => $this->repository->all(),
+        ];
+
+        return view('dashboard.history', $dados); 
+    }
 }
 

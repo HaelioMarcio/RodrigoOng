@@ -26,6 +26,11 @@ class Produto extends Model
         parent::boot();
     }
 
+    public function userName($id){
+        $user = User::find($id);
+        return $user['name'];
+    }
+
     protected $table = 'produto';
     protected $fillable = ['nome', 'descricao', 'status', 'busca', 'categoria_id'];
 
@@ -41,9 +46,8 @@ class Produto extends Model
     	}
     }
 
-    public function userName($id){
-        $user = User::find($id);
-        return $user['name'];
-    }
+    
+
+    
 
 }

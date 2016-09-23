@@ -186,4 +186,13 @@ class UsuarioController extends Controller
 		Auth::logout();
         return redirect('/login');
 	}
+
+    public function history(){
+        $dados = [
+            'title' => 'Usuários',
+            'all' => $this->repository->all(),
+        ];
+
+        return view('dashboard.history', $dados); 
+    }
 }
