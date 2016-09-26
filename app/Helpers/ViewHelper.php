@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Helpers;
-
 use App\Parametro;
 
 if (! function_exists('position')) {
@@ -11,8 +9,8 @@ if (! function_exists('position')) {
      * @param  string  $text
      * @return string
      */
-    function position(){
-		$parametro = Parametro::where('posicao', '=', 'rodape')->get();
+    function position($posicao){
+		$parametro = Parametro::where('posicao', '=', $posicao)->first();
 		return $parametro->descricao;
 	}	
 }

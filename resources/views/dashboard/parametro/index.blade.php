@@ -29,9 +29,6 @@
 				</td>
 			</tr>
 		@endforeach()
-
 	</table>
 	
-	{{position()}}
-
 @endsection()

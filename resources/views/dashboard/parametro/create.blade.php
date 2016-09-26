@@ -34,8 +34,7 @@
 				</div>		
 			</div>
 		</div>
-		
-		
+
 		<div class="form-group">
 			<textarea class="form-control" name="descricao" placeholder="Descrição"></textarea>
 		</div>	

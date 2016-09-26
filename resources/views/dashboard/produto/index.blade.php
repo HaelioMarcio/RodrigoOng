@@ -34,4 +34,7 @@
 		@endforeach
 	</table>
 	{{$all->render()}}
+
+	{{position('rodape')}}
+
 @endsection()
