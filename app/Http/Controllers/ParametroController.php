@@ -47,7 +47,7 @@ class ParametroController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        
         $validator = Validator::make($request->all(),
             [   
                 'nome' => 'required',
@@ -98,6 +98,7 @@ class ParametroController extends Controller
      */
     public function update(Request $request, $id)
     {
+        return $request->all();
         $validator = Validator::make($request->all(),
             [   
                 'nome' => 'required',

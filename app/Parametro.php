@@ -8,6 +8,9 @@ class Parametro extends Model
 {
 	use \Venturecraft\Revisionable\RevisionableTrait;    
 
+    protected $table = 'parametro';
+    protected $fillable = ['nome', 'posicao', 'status', 'descricao'];
+    
     protected $guarded = [];
 
     protected $revisionEnabled = true;
@@ -28,8 +31,7 @@ class Parametro extends Model
         $user = User::find($id);
         return $user['name'];
     }
-    protected $table = 'parametro';
-    protected $fillable = ['nome', 'posicao', 'status', 'descricao'];
+    
 
     public function statusName(){
     	if($this->status){

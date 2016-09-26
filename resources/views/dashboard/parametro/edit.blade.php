@@ -15,12 +15,20 @@
 		});
   	</script>
   	<script>tinymce.init({ selector:'textarea' });</script>
+  	<script type="text/javascript">
+  		$(document).ready(function(){
+  			$("#gravarForm").click(function(){
+  				var descricao = $("#descricao").value();
+  				alert(descricao);
+  			});
+  		});
+  	</script>
 @endsection()
 @section('content')
 	<h3>Editar Parametro - {{$parametro->nome}}</h3>
 	@include('dashboard.validator')
 	
-	<form action="{{url('dashboard/parametro/update')}}/{{$parametro->id}}" method="post">
+	<form  action="{{url('dashboard/parametro/update')}}/{{$parametro->id}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<div class="row">
 			<div class="col-md-6">
@@ -36,13 +44,13 @@
 		</div>
 		
 		<div class="form-group">
-			<textarea class="form-control" name="descricao" placeholder="Descrição">
+			<textarea id="descricao" class="form-control" name="descricao" placeholder="Descrição">
 				{{$parametro->descricao}}
 			</textarea>
 		</div>	
 		<div class="form-group">
-			<input type="submit" value="Salvar" class="btn btn-primary">
+			<input type="submit" id="gravarForm" value="Salvar" class="btn btn-primary">
+			<a href="{{url('dashboard/parametro')}}" value="Cancelar" class="btn btn-warning">Cancelar</a>
 		</div>
 	</form>
-
 @endsection()

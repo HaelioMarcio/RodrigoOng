@@ -40,6 +40,7 @@
 		</div>	
 		<div class="form-group">
 			<input type="submit" value="Salvar" class="btn btn-primary">
+			<a href="{{url('dashboard/parametro')}}" value="Cancelar" class="btn btn-warning">Cancelar</a>
 		</div>
 	</form>
 
