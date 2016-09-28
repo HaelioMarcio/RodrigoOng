@@ -25,7 +25,7 @@ class UsuarioController extends Controller
     {
         $dados = [
             'link' => 'produto',
-            'all' => $this->repository->all(),
+            'all' => $this->repository->paginate(10),
         ];
         return view('dashboard.usuario.index', $dados);
     }

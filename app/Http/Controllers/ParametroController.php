@@ -98,7 +98,7 @@ class ParametroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+        
         $validator = Validator::make($request->all(),
             [   
                 'nome' => 'required',
