@@ -12,6 +12,9 @@
 */
 //Website
 Route::get('/','SiteController@index');
+Route::get('/videos','SiteController@videos');
+Route::get('/loja','SiteController@loja');
+Route::get('/loja/produto/{busca}','SiteController@produto');
 
 Route::get('/login', 'UsuarioController@login');
 Route::post('/autentica', 'UsuarioController@autentica');

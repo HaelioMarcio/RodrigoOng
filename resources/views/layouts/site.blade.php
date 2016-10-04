@@ -45,19 +45,19 @@
       <div id="accordian">
         <ul>
           <li>
-            <h3><a href="">Home</a></h3>
+            <h3><a href="{{url('')}}">Home</a></h3>
           </li>
           <li>
-            <h3><a href="">Quem Somos</a></h3>
+            <h3><a href="#quemsomos">Quem Somos</a></h3>
           </li>
           <li>
-            <h3><a href="">Direção</a></h3>
+            <h3><a href="#direcao">Direção</a></h3>
           </li>
           <li>
-            <h3><a href="">Serviços</a></h3>
+            <h3><a href="#servicos">Serviços</a></h3>
           </li>
           <li>
-            <h3><a href="">Portfólio</a></h3>
+            <h3><a href="#portfolio">Portfólio</a></h3>
           </li>
           <!--
           <li>
@@ -65,10 +65,10 @@
           </li>
           -->
           <li>
-            <h3><a href="">Blog</a></h3>
+            <h3><a href="#blog">Blog</a></h3>
           </li>
           <li>
-            <h3><a href="">Contato</a></h3>
+            <h3><a href="#contato">Contato</a></h3>
           </li>
         </ul>
       </div>

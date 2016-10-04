@@ -6,6 +6,7 @@
         <div class="col-md-12 animated" data-animation="fadeIn">
           <img src="{{url('img/somos-energia-que-transforma.jpg')}}" style="margin-top:-25px">
           <header>
+            <div id="quemsomos"></div>
             <h1>Apresentação O Pequeno Nazareno </h1>
             <span class="line"> <span></span> </span>
             <h5>Que futuro terá uma sociedade que nega à suas crianças o direito a um presente?</h5>
@@ -154,17 +155,20 @@
             <h1 style="margin-top: 50px">VÍDEOS</h1>
             <span class="line"> <span></span> </span> 
           </header>
+          <div class="row">
           @foreach($videos as $v)
           <iframe width="560" height="315" src="{{$v->link}}" frameborder="0" allowfullscreen></iframe>
           @endforeach
+          </div>
           <iframe width="560" height="315" src="https://www.youtube.com/embed/QILIXN3fP6o" frameborder="0" allowfullscreen></iframe> 
           <iframe width="560" height="315" src="https://www.youtube.com/embed/tj8kFnJOrlQ" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
-      <img src="{{url('img/sua-energia-e-a-nossa-força.jpg')}}" style="margin-top:50px"/>
       <div class="col-md-12 pad-top-60 view-more animated" data-animation="fadeInUp"> 
-        <a href="">Outros</a><!--web_designer_modelos.html--> 
+        <a href="{{url('videos')}}">Outros Vídeos</a><!--web_designer_modelos.html--> 
       </div>
+      <img src="{{url('img/sua-energia-e-a-nossa-forca.jpg')}}" style="margin-top:50px"/>
+      
     </div>
   </section>
   <section class="full-width grey-bg"></section>
@@ -315,7 +319,7 @@
             <header>
               <h1>LOJA O Pequeno Nazareno</h1>
               <h4>VEJA NOSSOS PRODUTOS E AJUDE A ORGANIZAÇÃO</h4>
-              <p><a href="" class="slide-btn">veja mais</a></p><!--web_designer_quem_somos.html-->
+              <p><a href="{{url('loja')}}" class="slide-btn">veja mais</a></p><!--web_designer_quem_somos.html-->
               <span class="line"> <span></span> </span>
             </header>
           </div>
