@@ -11,6 +11,7 @@
 |
 */
 //Website
+Route::get('/newsletter/store','SiteController@newsletter');
 Route::get('/','SiteController@index');
 Route::get('/videos','SiteController@videos');
 Route::get('/loja','SiteController@loja');
@@ -88,11 +89,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
 	//Newsletter
 	Route::group(['prefix' => 'newsletter'], function () {
-		Route::get('/', 'ProdutoController@index');
-		Route::get('/edit/{id}', 'ProdutoController@edit');
-		Route::get('/store', 'ProdutoController@store');
-		Route::get('/update/{id}', 'ProdutoController@update');
-		Route::get('/delete/{id}', 'ProdutoController@destroy');
+		Route::get('/', 'NewsletterController@index');
+		Route::get('/edit/{id}', 'NewsletterController@edit');
+		Route::get('/store', 'NewsletterController@store');
+		Route::get('/update/{id}', 'NewsletterController@update');
+		Route::get('/delete/{id}', 'NewsletterController@destroy');
 	});
 
 	//Parametro

@@ -5,7 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Video, App\Produto, Storage;
+use App\Video, App\Produto, Storage, App\Newsletter;
+use Validator;
+
+use SEOMeta;
+use OpenGraph;
+use Twitter;
+## or
+use SEO;
 
 class SiteController extends Controller
 {  
@@ -15,6 +22,8 @@ class SiteController extends Controller
         $this->produto = $produto;
     }
     public function index(){
+
+        
         $dados = [
             'videos' => $this->video->all(),
             'images' => Storage::disk('public_slideshow')->allFiles(),
@@ -24,6 +33,7 @@ class SiteController extends Controller
     public function videos(){
         $dados = [
             'videos' => $this->video->all(),
+            'images' => Storage::disk('public_slideshow')->allFiles(),
         ];
         return view('site.video', $dados);
     }
@@ -31,6 +41,7 @@ class SiteController extends Controller
     public function loja(){
         $dados = [
             'produtos' => $this->produto->paginate(20),
+            'images' => Storage::disk('public_slideshow')->allFiles(),
         ];
         return view('site.loja', $dados);
     }
@@ -39,6 +50,7 @@ class SiteController extends Controller
         $produto = $this->produto->where('busca', '=', $busca)->get();
         $dados = [
             'produto' => $produto->first(),
+            'images' => Storage::disk('public_slideshow')->allFiles(),
         ];
 
         return view('site.produto', $dados);
@@ -60,6 +72,27 @@ class SiteController extends Controller
     }
     public function contato(){
     	return view('site.contato');
+    }
+
+    public function newsletter(Request $request){
+        $newsletter = new Newsletter();
+
+        $validator = Validator::make($request->all(),
+            [
+                'email' => 'required|unique:newsletter|email'
+            ],[
+                'required' => 'Por favor, informe o email no campo acima',
+                'unique' => 'Email já cadastrado em nosso sistema',
+                'email' => 'Email inválido, por favor, informe corretamente seu email.'
+            ]);
+
+        if(!$validator->fails()){
+            $newsletter->create($request->all());
+            return ['success' => 'Email salvo com sucesso.'];
+        }
+        
+        return $validator->errors();
+
     }
 
 }

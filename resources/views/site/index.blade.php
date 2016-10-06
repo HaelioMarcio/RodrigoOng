@@ -227,17 +227,17 @@
           </div>
           <div class="col-md-12 animated" id="contactForm" data-animation="fadeInUp">
             <div class="done"> <strong>OBRIGADO</strong> Recebemos sua mensagem. </div>
-            <FORM ACTION="http://form.ultramail.com.br/" METHOD="POST">
-              <P> 
+            
+            <form class="form-newsletter">
+              
               <h4>E-MAIL:</h4>
-              <BR>
-              <INPUT TYPE="text" NAME="email" SIZE="24">
-              <BR>
-              <INPUT TYPE="hidden" NAME="key" VALUE="eJwBwwA8/8j0mPcMAy7dtTyRSA2UfzptOEpZSTcs58YBFZwLU+3PRm9ybVVsdHJhTWFpbJHFVqbOhH7NaxkohlhoRGSb6dDbLsk/TA5kaCxfcZYxvkj4jbN1mcTBe2S1azx00HYzECzUHzuDowTJfecqeIEIheGC6NkzR4ow+b5xRbEqNr8A3hvtxST8Ir2VcFj3+rKv5RKEF3OpDniJk4cQ2GJOQpetbXfz1JNO7VpVk9Gm5zsBvGOyexqsZkTorIaBRVcDN4AuXNadXMY=">
-              <INPUT TYPE="hidden" NAME="redirect" VALUE="http://arteugarte.com">
-              <INPUT TYPE="submit" value="OBRIGADO">
-              </P>
-            </FORM>
+              <br>
+              <input type="text" id="email-newsletter" name="email" size="24">
+              <br>
+              
+            </form>
+            <button class="btn-newsletter">OBRIGADO</button>
+            <div style="color: #fff;" id="resposta-newsletter"></div>
           </div>
         </div>
       </div>
@@ -327,4 +327,31 @@
       </div>
     </div>
   </section>
+@endsection()
+
+@section('scripts')
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(".btn-newsletter").click(function(){
+
+        var emailInput = $('#email-newsletter').val();
+        if(emailInput == '' | emailInput == null){
+          $('#resposta-newsletter').html('Por favor, preencha o campo com seu email.');
+          return false;
+        }
+        var url = "<?php echo url('newsletter/store'); ?>";
+        
+        $.get(
+          url+'?email='+emailInput,
+          function(data){
+            if(data.success){
+              $('#resposta-newsletter').html('<div class="alert alert-success" role="alert">'+data.success+'</div>');  
+            } else {
+              $('#resposta-newsletter').html('<div class="alert alert-danger" role="alert">'+data.email[0]+'</div>');  
+            }
+          });
+
+      });
+    });
+  </script>
 @endsection()

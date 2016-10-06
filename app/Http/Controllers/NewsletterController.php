@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Newsletter;
 
 class NewsletterController extends Controller
 {
+    private $repository;
+
+    public function __construct(Newsletter $newsletter){
+        $this->repository = $newsletter;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,11 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        
+        $dados = [
+            'all' => $this->repository->paginate(15),
+        ];
+
+        return view('dashboard.newsletter.index', $dados);
     }
 
     /**
@@ -36,7 +44,7 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -81,6 +89,8 @@ class NewsletterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $newsletter = $this->repository->find($id);
+        $newsletter->delete();
+        return redirect()->back()->with(['status_ok' => 'Email removido com sucesso']);
     }
 }

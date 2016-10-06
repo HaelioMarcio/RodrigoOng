@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<title>O Pequeno Nazareno</title>
+{!! SEO::generate(true) !!}
 <link rel="shortcut icon" href="img/favicon.ico">
 <link rel="apple-touch-icon" href="img/apple/apple_touch_icon_57.png">
 <link rel="apple-touch-icon" sizes="72x72" href="img/apple/apple_touch_icon_72.png">
@@ -251,5 +251,6 @@ $(function() {
 	cbpBGSlideshow.init();
 });
 </script>
+@yield('scripts')
 </body>
 </html>

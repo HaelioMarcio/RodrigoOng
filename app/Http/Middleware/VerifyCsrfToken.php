@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'dashboard/parametro/store',
-        'dashboard/parametro/update'
+        'dashboard/parametro/update',
+        'newsletter/store'
     ];
 }

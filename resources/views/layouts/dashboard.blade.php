@@ -73,7 +73,7 @@
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Relatórios <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{url('alunos/export-excel')}}"></a></li>
+                      <li><a href="{{url('dashboard/newsletter')}}">Lista de Emails</a></li>
                     </ul>
                   </li>
                   
