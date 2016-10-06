@@ -2,6 +2,7 @@
 
 use App\Parametro;
 
+
 if (! function_exists('position')) {
     /**
      * Format text.
@@ -15,5 +16,16 @@ if (! function_exists('position')) {
 	}	
 }
 
+if (! function_exists('slideshow')) {
+    /**
+     * Format text.
+     *
+     * @param  string  $text
+     * @return string
+     */
+    function slideshow(){
+        return false;
+    }   
+}
 
 

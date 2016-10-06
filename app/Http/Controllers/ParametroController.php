@@ -19,14 +19,25 @@ class ParametroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dados = [
-        'link' => 'parametro',
-            'all' => $this->repository->paginate(15),
-        ];
+        if($request->input('busca')){
+            $p = $this->repository->where('nome', 'like', $request->input('busca').'%')->paginate(15);
+            $dados = [
+                'link' => 'parametro',
+                'all' => $p,
+            ];  
 
-        return view('dashboard.parametro.index', $dados);
+            return view('dashboard.parametro.index', $dados);
+        } else {
+            $dados = [
+            'link' => 'parametro',
+                'all' => $this->repository->paginate(15),
+            ];
+
+            return view('dashboard.parametro.index', $dados);    
+        }
+        
     }
 
     /**

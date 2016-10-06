@@ -20,13 +20,23 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dados = [
-        'link' => 'categoria',
-            'all' => $this->repository->paginate(15)
-        ];
-        return view('dashboard.categoria.index', $dados);
+        if($request->input('busca')){
+            $categoria = $this->repository->where('nome', 'like', $request->input('busca').'%')->paginate(15);
+            $dados = [
+            'link' => 'categoria',
+            'all' => $categoria
+            ];
+            return view('dashboard.categoria.index', $dados);    
+        } else {
+            $dados = [
+            'link' => 'categoria',
+                'all' => $this->repository->paginate(15)
+            ];
+            return view('dashboard.categoria.index', $dados);    
+        }
+        
     }
 
     /*

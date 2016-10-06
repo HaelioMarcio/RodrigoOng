@@ -3,6 +3,17 @@
 	<h3>Lista de Produtos</h3>
 	<a class="btn btn-success" href="{{url('dashboard/produto/novo')}}">Novo Produto</a>
 	@include('dashboard.linkhistory')
+	<form action="{{url('dashboard/produto')}}" class="form-inline">
+		<div class="form-group">
+			<input type="text" name="busca" class="form-control" placeholder="Pesquisar">
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Buscar">
+		</div>
+		<div class="form-group">
+			<a href="{{url('dashboard/produto')}}" class="btn btn-warning">Limpar</a>
+		</div>
+	</form>
 	@include('dashboard.validator')
 	<table class="table table-hover">
 		<tr>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Video, App\Produto;
+use App\Video, App\Produto, Storage;
 
 class SiteController extends Controller
 {  
@@ -17,6 +17,7 @@ class SiteController extends Controller
     public function index(){
         $dados = [
             'videos' => $this->video->all(),
+            'images' => Storage::disk('public_slideshow')->allFiles(),
         ];
     	return view('site.index', $dados);
     }

@@ -18,15 +18,27 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dados = [
-            'link' => 'video',
-            'all' => $this->repository->paginate(6),
+        if($request->input('busca')){
+            $video = $this->repository->where('nome', 'like', $request->input('busca').'%')->paginate(6);
+            
+            $dados = [
+                'link' => 'video',
+                'all' => $video,
+            ];
 
-        ];
+            return view('dashboard.video.index', $dados);
+            
+        } else {
+            $dados = [
+                'link' => 'video',
+                'all' => $this->repository->paginate(6),
+            ];
+            return view('dashboard.video.index', $dados);
+        }
 
-        return view('dashboard.video.index', $dados);
+        
     }
 
     /**

@@ -30,13 +30,23 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dados = [
-            'link' => 'produto',
-            'all' => $this->repository->paginate(15),
-        ];
-        return view('dashboard.produto.index', $dados);
+        if($request->input('busca')){
+            $produtos = $this->repository->where('nome', 'like', $request->input('busca').'%')->paginate(15);
+            $dados = [
+                'link' => 'produto',
+                'all' => $produtos,
+            ];
+            return view('dashboard.produto.index', $dados);    
+        } else {
+            $dados = [
+                'link' => 'produto',
+                'all' => $this->repository->paginate(15),
+            ];
+            return view('dashboard.produto.index', $dados);    
+        }
+        
     }
 
     /**

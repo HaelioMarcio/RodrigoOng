@@ -17,6 +17,7 @@
           <!--
           <p><i class="fa fa-cloud active"></i></p>
           -->
+          <div id="quemsomos"></div>
           <h3>Somos Luz</h3>
           <p>A Associação O Pequeno Nazareno é uma organização não governamental sem fins lucrativos, especializada no trabalho com de crianças e adolescentes em situação de moradias nas ruas e suas famílias...</p>
           <p><a href="" class="square-btn">Veja mais</a></p><!--web_designer_roger_ugarte.html-->
@@ -160,8 +161,7 @@
           <iframe width="560" height="315" src="{{$v->link}}" frameborder="0" allowfullscreen></iframe>
           @endforeach
           </div>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/QILIXN3fP6o" frameborder="0" allowfullscreen></iframe> 
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/tj8kFnJOrlQ" frameborder="0" allowfullscreen></iframe>
+          
         </div>
       </div>
       <div class="col-md-12 pad-top-60 view-more animated" data-animation="fadeInUp"> 

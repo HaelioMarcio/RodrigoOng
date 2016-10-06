@@ -92,11 +92,9 @@
   <section id="home-header" class="fullwidth-slider_3">
     <div class="transparent-bg"> 
       <ul id="cbp-bislideshow" class="cbp-bislideshow">
-        <li><img src="{{url('img/slides_principal/slider_1.jpg')}}"></li>
-        <li><img src="{{url('img/slides_principal/slider_2.jpg')}}"></li>
-        <li><img src="{{url('img/slides_principal/slider_3.jpg')}}"></li>
-        <li><img src="{{url('img/slides_principal/slider_4.jpg')}}"></li>
-        <li><img src="{{url('img/slides_principal/slider_5.jpg')}}"></li>
+        @foreach($images as $image)
+        <li><img src="{{url('images/slideshow')}}/{{$image}}"></li>
+        @endforeach
       </ul>
       <!--
       <div class="container text-center">

@@ -6,6 +6,7 @@
 
 	<div class="row">
 		@if(!isset($edit))
+		<div class="col-md-6">
 		<form class="form-inline" action="{{url('dashboard/categoria/store')}}" method="post">
 			<input type="hidden" name="_token" value="{{csrf_token()}}">
 			<input type="hidden" name="id" value="">
@@ -19,7 +20,20 @@
 				@include('dashboard.linkhistory')
 			</div>
 		</form>
-		
+		</div>
+		<div class="col-md-6">
+			<form action="{{url('dashboard/categoria')}}" class="form-inline">
+				<div class="form-group">
+					<input type="text" name="busca" class="form-control" placeholder="Pesquisar">
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="Buscar">
+				</div>
+				<div class="form-group">
+					<a href="{{url('dashboard/categoria')}}" class="btn btn-warning">Limpar</a>
+				</div>
+			</form>
+		</div>
 		@endif
 		@if(isset($edit))
 			<form class="form-inline" action="{{url('dashboard/categoria/update')}}/{{$categoria->id}}" method="post">

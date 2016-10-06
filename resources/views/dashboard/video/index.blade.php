@@ -2,8 +2,27 @@
 @section('content')
 	
 	<h3>Vídeos</h3>
-	<a href="{{url('dashboard/video/novo')}}" class="btn btn-success">Novo Vídeo</a>
-	@include('dashboard.linkhistory')
+	<div class="row">
+		<div class="col-md-6">
+			<a href="{{url('dashboard/video/novo')}}" class="btn btn-success">Novo Vídeo</a>	
+			@include('dashboard.linkhistory')		
+		</div>
+		<div class="col-md-6">
+			<form action="{{url('dashboard/video')}}" class="form-inline">
+				<div class="form-group">
+					<input type="text" name="busca" class="form-control" placeholder="Pesquisar">
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="Buscar">
+				</div>
+				<div class="form-group">
+					<a href="{{url('dashboard/video')}}" class="btn btn-warning">Limpar</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+
 	@include('dashboard.validator')
 	<hr>
 	<div class="row">
